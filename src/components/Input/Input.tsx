@@ -1,6 +1,6 @@
 import { forwardRef, HTMLProps } from "react";
 
-interface InputProps extends Omit<HTMLProps<HTMLInputElement>, "value"> {
+interface InputProps extends Omit<HTMLProps<HTMLInputElement>, "alt"> {
   label?: string;
   error?: { message: string };
 }
