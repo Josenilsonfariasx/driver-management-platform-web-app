@@ -1,4 +1,5 @@
 import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 import "./styles/index.scss"
 import { RoutesMain } from "./routes/routes"
 
@@ -17,7 +18,7 @@ function App() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"
+        theme="dark"
         />
     </>
   )
