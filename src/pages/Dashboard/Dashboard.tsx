@@ -1,6 +1,7 @@
 import { Header } from "../../components/Header/Header";
 import { TechList } from "../../components/DriverList/DriverList";
 import style from "./style.module.scss";
+import { TransportList } from "../../components/TransportList/TransportList";
 
 export interface user {
   id: string;
@@ -26,6 +27,7 @@ export const Dashboard = () => {
           </div>
         </div>
         <div className={style.info}><TechList /></div>
+        <div className={style.info}><TransportList /></div>
       </main>
     </div>
   );
