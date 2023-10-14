@@ -1,0 +1,25 @@
+.li {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: .62rem 1.62rem;
+  margin: 0 auto;
+  > div {
+      border-radius: 4px;
+      background-color: var(--Grey-4);
+      height: 3.0625rem; 
+      padding: 0 1.62rem;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      > div {
+          display: flex;
+          gap: .59rem;
+          >img {
+              cursor: pointer;
+          }
+      }
+  }
+}
