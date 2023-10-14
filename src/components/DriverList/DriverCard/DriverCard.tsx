@@ -1,4 +1,4 @@
-import { DriverRequest } from "../../../Providers/DriverContext";
+import { DriverRequest, useDriverContext } from "../../../Providers/DriverContext";
 import icon_paint from "../../../assets/paint.svg";
 import icon_trash from "../../../assets/trash.svg";
 import style from "./style.module.scss";
@@ -11,6 +11,7 @@ interface DriverCardProps {
 }
 
 export const DriverCard = ({ driver, visible, setVisible, EditModaValue }: DriverCardProps) => {
+  const { deleteDriver, setId }: any = useDriverContext();
   return (
     <>
       <li className={style.li}>
@@ -33,7 +34,8 @@ export const DriverCard = ({ driver, visible, setVisible, EditModaValue }: Drive
               src={icon_trash}
               alt="lixeira"
               onClick={() => {
-                // removeTech(id)
+                setId(driver.id)
+                deleteDriver.mutate()
               }}
             />
           </div>

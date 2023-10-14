@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ReactNode, createContext, useContext, useState } from "react";
 import { Api } from "../Services/Api";
+import { toast } from "react-toastify";
 // import { Api } from "../Services/Api";
 // import { toast } from "react-toastify";
 // import { useNavigate } from "react-router-dom";
@@ -42,7 +43,10 @@ export const DriverProvider =({ children }:DriverProvider) => {
         }
       })
     },
-    onSuccess:revalidate, 
+    onSuccess:()=>{
+      toast.success('Motorista criado com sucesso')
+      revalidate()
+    } 
   })
   const driverEdit = useMutation<any, unknown, any>({
     mutationFn: async () => {
@@ -53,12 +57,27 @@ export const DriverProvider =({ children }:DriverProvider) => {
       });
     },
     onSuccess: () => {
-      revalidate();
+      toast.success('Dados do motorista editados com sucesso')
+      revalidate()
     }
   });
+
+  const deleteDriver = useMutation({
+    mutationFn: async () => {
+      return await Api.delete(`/api/drivers/${id}`,{
+        headers:{
+          Authorization: `Bearer ${token}`
+        }
+      })
+    },
+    onSuccess: ()=>{
+      toast.success('Motorista Deletado com sucesso')
+      revalidate()
+    }
+  })
   
 return (
-  <DriverContext.Provider value={{DriversLit, driverCreate, driverEdit, setId, setUser}}>
+  <DriverContext.Provider value={{DriversLit, driverCreate, driverEdit, setId, setUser, deleteDriver}}>
       {children}
   </DriverContext.Provider>
 );
