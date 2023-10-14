@@ -10,9 +10,7 @@ export const TechList = () => {
   const [visible, setVisible] = useState(false);
   const [editVisible, setEdit] = useState(false);
   const [EditModaValue, setValueModalEdit] = useState<any | undefined>(undefined);
-  console.log(editVisible);
   const { DriversLit }: any = useDriverContext();
-
   return (
     <>
       <section className={style.section}>
