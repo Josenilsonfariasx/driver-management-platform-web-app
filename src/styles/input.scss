@@ -1,0 +1,21 @@
+.input {
+  display: flex;
+  max-width: 100%;
+  width: 16rem;
+  height: 3rem;
+  padding: 0rem 1.01519rem;
+  align-items: center;
+  gap: 0.6345rem;
+  flex-shrink: 0;
+
+  border-radius: 0.25rem;
+  border: 1.218px solid var(--Grey-2);
+  background: var(--Grey-2);
+  color: var(--Grey-0);
+
+  &:focus {
+      border-radius: 0.25rem;
+      border: 1.218px solid var(--Grey-0);
+      background: var(--Grey-2);
+  }
+}

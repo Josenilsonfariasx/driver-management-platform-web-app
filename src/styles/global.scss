@@ -1,0 +1,29 @@
+:root {
+
+  // Colors
+  
+  // Primary Palette
+  --Color-primary: #F6C90E;
+  --Color-primary-Focus: #F6C90E;
+  --Color-primary-Negative: #CD1818;
+  
+
+  // Grey Scale Palette
+  --Grey-0: #F8F9FA;
+  --Grey-1: #868E96;
+  --Grey-2: #343B41;
+  --Grey-3: #212529;
+  --Grey-4: #121214;
+
+  // Feedback Palette
+  --Sucess: #3FE864;
+  --Negative: #E83F5B;
+
+  // Font
+  --font-primary: "Inter", sans-serif;
+}
+
+.container {
+  max-width: 50.375rem;
+  margin: 0 auto;
+}

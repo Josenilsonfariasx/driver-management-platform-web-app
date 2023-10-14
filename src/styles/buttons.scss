@@ -1,0 +1,49 @@
+.button {
+  display: inline-flex;
+  max-height: 3rem;
+  padding: 0rem 1.39588rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6345rem;
+  flex-shrink: 0;
+  cursor: pointer;
+
+  border-radius: 0.25381rem;
+  border: 1.218px solid var(--Color-primary);
+  background: var(--Color-primary);
+
+  &:hover {
+      border-radius: 0.25rem;
+      border: 1.218px solid var(--Color-primary-Focus);
+      background: var(--Color-primary-Focus);
+  }
+
+  &.sm {
+      max-height: 2.5rem;
+  }
+
+  &.negative {
+      border-radius: 0.25rem;
+      border: 1.218px solid var(--Color-primary-Negative);
+      background: var(--Color-primary-Negative);
+  }
+
+  &.variant {
+      border-radius: 0.25rem;
+      border: 1.218px solid var(--Grey-1);
+      background: var(--Grey-1);
+  }
+
+  &:disabled {
+      opacity: 0.2;
+      border-radius: 0.25rem;
+      border: 1.218px solid var(--Grey-1);
+      background: var(--Grey-1);
+
+      &:hover {
+          border-radius: 0.25rem;
+          border: 1.218px solid var(--grey-2);
+          background: var(--grey-2);
+      }
+  }
+}
