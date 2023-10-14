@@ -23,10 +23,8 @@ export const SingIn = () => {
     const submit = async(dataForm: object) => {
         try {
             setLoading(true)
-            console.log(dataForm)
             await login(dataForm)
         } catch (error:any) {
-          console.log(error)
           toast.warning(error.message)
         } finally {
           setLoading(false)
@@ -71,7 +69,7 @@ export const SingIn = () => {
                         </div>
                     </form>
                     <span className="title headline grey">
-                        Ainda não possui uma conta?
+                        CADASTO DE MOTORISTAS
                     </span>
                 </div>
             </main>

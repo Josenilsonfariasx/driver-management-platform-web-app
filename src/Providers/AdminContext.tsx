@@ -8,26 +8,21 @@ interface AdminProvider {
   children : ReactNode;
 }
 export const AdminProvider = ({ children }:AdminProvider) => {
-  // const [admin, setAdmin] = useState <object|null>(null);
   const navi = useNavigate();
 
   const login = async (form:object) => {
     console.log('chegando')
     try {
         const { data } = await Api.post("/api/auth/login", form);
-        console.log(form)
-        // setAdmin(data.user);
-        localStorage.setItem("@me2-id", data.token);
+        localStorage.setItem("@me2-token", data.token);
+        localStorage.setItem("@me2-user", JSON.stringify(data.user));
         toast.success("Logado com sucesso");
-        navi("/home");
+        // navi("/home");
     } catch (error:any) {
-        {
-            "Incorrect email / password combination".includes(
-                error.response.data.message
-            )
-                ? toast.warning("Email ou Senha incorretos")
-                : null;
+        if(error.response.status == 401){
+          return toast.error('Email ou senha incorretos')
         }
+        return toast.error('Erro interno, tente novamente mais tarde')
     }
 };
 return (
