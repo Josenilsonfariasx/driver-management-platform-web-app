@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { ValidationLogin } from "./validationLogin"
 import { toast } from "react-toastify"
-import { Header } from "../components/Header/Header"
-import { Input } from "../components/Input/Input"
-import { useAdminContext } from "../Providers/AdminContext"
+import { Header } from "../../components/Header/Header"
+import { Input } from "../../components/Input/Input"
+import { useAdminContext } from "../../Providers/AdminContext"
 import { useState } from "react"
 export const SingIn = () => {
     const [loading, setLoading] = useState<boolean | undefined>()
