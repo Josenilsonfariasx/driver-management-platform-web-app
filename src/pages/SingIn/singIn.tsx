@@ -11,7 +11,6 @@ import { useState } from "react"
 export const SingIn = () => {
     const [loading, setLoading] = useState<boolean | undefined>()
     const { login }:any = useAdminContext(); 
-    // const navi = useNavigate()
     const {
         register,
         handleSubmit,

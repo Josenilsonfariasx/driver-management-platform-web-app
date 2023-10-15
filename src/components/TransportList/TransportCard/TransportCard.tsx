@@ -10,7 +10,7 @@ interface DriverCardProps {
   EditModaValue?: (editModal: any) => void;
 }
 
-export const DriverCard = ({ driver, visible, setVisible, EditModaValue }: DriverCardProps) => {
+export const DriverCard = ({ driver, setVisible, EditModaValue }: DriverCardProps) => {
   const { deleteDriver, setId }: any = useDriverContext();
   return (
     <>
