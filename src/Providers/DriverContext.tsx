@@ -41,6 +41,13 @@ export const DriverProvider = ({ children }: DriverProvider) => {
     client.invalidateQueries({ queryKey: ["driversList"] });
   };
 
+  const errorMapping: Record<string, string> = {
+    "The name field is required.": "O campo nome é obrigatório.",
+    "The cpf field is required.": "O campo CPF é obrigatório.",
+    "The telephone field is required.": "O campo telefone é obrigatório.",
+    "The password field format is invalid.": "O campo senha esta com formato invalido",
+  };
+  
   const driverCreate = useMutation({
     mutationFn: async (data) => {
       return await Api.post("/api/drivers", data, {
@@ -53,7 +60,25 @@ export const DriverProvider = ({ children }: DriverProvider) => {
       toast.success("Motorista criado com sucesso");
       revalidate();
     },
+    onError: (error: any) => {
+      if (error.response && error.response.data && error.response.data.errors) {
+        const errorMessages = error.response.data.errors;
+  
+        for (const fieldName in errorMessages) {
+          if (errorMessages.hasOwnProperty(fieldName)) {
+            errorMessages[fieldName].forEach((errorMessage: string) => {
+              const translatedError = errorMapping[errorMessage] || errorMessage;
+              toast.error(translatedError);
+            });
+          }
+        }
+      } else {
+        toast.error("Ocorreu um erro ao criar o motorista. Tente novamente mais tarde.");
+      }
+    },
   });
+  
+  
   const driverEdit = useMutation<any, unknown, any>({
     mutationFn: async () => {
       return await Api.put(`/api/drivers/${id}`, user, {
@@ -65,6 +90,9 @@ export const DriverProvider = ({ children }: DriverProvider) => {
     onSuccess: () => {
       toast.success("Dados do motorista editados com sucesso");
       revalidate();
+    },
+    onError(error) {
+      console.log(error)
     },
   });
 
@@ -92,10 +120,11 @@ export const DriverProvider = ({ children }: DriverProvider) => {
       const data = response.data;
       setUserFull(data);
     } catch (error:any) {
-      console.log(error.response.data.errors);
       if(error.response.data.errors ==  'Token Expired'){
         navi("/")
         return toast.error('Voce vai ser redirecionado para efetuar o login novamente, Token Expirado')
+      }else {
+        return toast.error('Estamos enfrentando problemas internos, tente novamente mais tarde')
       }
     }
 };
