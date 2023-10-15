@@ -5,12 +5,13 @@ import { DriverCard } from "./DriverCard/DriverCard";
 import style from "./style.module.scss";
 import { ModalCreate } from "../ModalCreate/ModalCreate";
 import { ModalEdit } from "../ModalEdit/ModalEdit";
+import { DriverInfoModal } from "../DriverInforCard/DriverInforCard";
 
 export const TechList = () => {
   const [visible, setVisible] = useState(false);
   const [editVisible, setEdit] = useState(false);
   const [EditModaValue, setValueModalEdit] = useState<any | undefined>(undefined);
-  const { DriversLit }: any = useDriverContext();
+  const { DriversLit, userFull, userVisibleFull, setUserVisibleFull }: any = useDriverContext();
   return (
     <>
       <section className={style.section}>
@@ -34,6 +35,7 @@ export const TechList = () => {
           </ul>
           {visible ? <ModalCreate visible={setVisible} /> : null}
           {editVisible ? <ModalEdit EditModaValue={EditModaValue} visible={setEdit} /> : null}
+          {userVisibleFull? <DriverInfoModal visible={setUserVisibleFull} driverData={userFull}  /> : null}
         </div>
       </section>
     </>
