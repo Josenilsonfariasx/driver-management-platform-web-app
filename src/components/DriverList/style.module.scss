@@ -27,6 +27,8 @@
       margin-top: 1.31rem;
       border-radius: 8px;
       > ul {
+        overflow: scroll;
+        max-height: 16.5rem;
           width: 100%;
       }
   }
