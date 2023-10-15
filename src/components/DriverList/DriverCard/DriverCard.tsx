@@ -1,17 +1,17 @@
 import { DriverRequest, useDriverContext } from "../../../Providers/DriverContext";
 import icon_paint from "../../../assets/paint.svg";
 import icon_trash from "../../../assets/trash.svg";
+import red_eyes from "../../../assets/red-eyes.png";
 import style from "./style.module.scss";
 
 interface DriverCardProps {
   driver: DriverRequest;
-  visible?: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
   EditModaValue?: (editModal: any) => void;
 }
 
-export const DriverCard = ({ driver, visible, setVisible, EditModaValue }: DriverCardProps) => {
-  const { deleteDriver, setId }: any = useDriverContext();
+export const DriverCard = ({ driver, setVisible, EditModaValue }: DriverCardProps) => {
+  const { deleteDriver, setId, GetInfoDriverAndTransport, setUserVisibleFull }: any = useDriverContext();
   return (
     <>
       <li className={style.li}>
@@ -34,8 +34,17 @@ export const DriverCard = ({ driver, visible, setVisible, EditModaValue }: Drive
               src={icon_trash}
               alt="lixeira"
               onClick={() => {
-                setId(driver.id)
-                deleteDriver.mutate()
+                setId(driver.id);
+                deleteDriver.mutate();
+              }}
+            />
+            <img
+              width={20}
+              src={red_eyes}
+              alt="olhos"
+              onClick={async() => {
+                await GetInfoDriverAndTransport(driver.id);
+                setUserVisibleFull(true)
               }}
             />
           </div>
