@@ -19,7 +19,6 @@ export const ModalCreateTransport = ({ visible }: any) => {
     } else {
       visible(false);
       await CreateVeiculo(dataForm)
-      // console.log(dataForm);
     }
   };
   return (
