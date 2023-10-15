@@ -5,14 +5,13 @@ import { useForm } from "react-hook-form";
 import { DriverRequest, useDriverContext } from "../../Providers/DriverContext";
 import { SubmitHandler, FieldValues } from "react-hook-form";
 
-
 interface ModalEditProps {
   visible: (isVisible: boolean) => void;
   EditModaValue: DriverRequest | undefined;
 }
 
 export const ModalEdit = ({ visible, EditModaValue }: ModalEditProps) => {
-  const { driverEdit, setId, setUser }: any = useDriverContext();
+  const { driverEdit, setUser }: any = useDriverContext();
   const { register, handleSubmit } = useForm();
   const submit: SubmitHandler<FieldValues> = (dataForm) => {
     const updatedDriver: DriverRequest = {
@@ -23,12 +22,13 @@ export const ModalEdit = ({ visible, EditModaValue }: ModalEditProps) => {
     };
 
     const filteredDriver = Object.fromEntries(
-      Object.entries(updatedDriver).filter(([_key, value]) => value !== undefined && !Number.isNaN(value) && value !== '')
+      Object.entries(updatedDriver).filter(
+        ([_key, value]) => value !== undefined && !Number.isNaN(value) && value !== ""
+      )
     );
-    
-    setId(EditModaValue?.id)
-    setUser(filteredDriver)
-    driverEdit.mutate();
+
+    setUser(filteredDriver);
+    driverEdit.mutate(EditModaValue?.id);
     visible(false);
   };
 
@@ -43,12 +43,7 @@ export const ModalEdit = ({ visible, EditModaValue }: ModalEditProps) => {
         </div>
         <div className={style.divForm}>
           <form onSubmit={handleSubmit(submit)}>
-            <Input
-              label="Nome"
-              type="text"
-              placeholder={EditModaValue?.name || ""}
-              {...register("name")}
-            />
+            <Input label="Nome" type="text" placeholder={EditModaValue?.name || ""} {...register("name")} />
             <Input
               label="Cpf"
               type="text"

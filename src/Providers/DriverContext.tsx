@@ -31,7 +31,6 @@ export const DriverProvider = ({ children }: DriverProvider) => {
       return response.data;
     },
   });
-  const [id, setId] = useState();
   const [user, setUser] = useState();
   const [userFull, setUserFull] = useState(); 
   const [userVisibleFull, setUserVisibleFull] = useState(null)
@@ -83,7 +82,7 @@ export const DriverProvider = ({ children }: DriverProvider) => {
   
   
   const driverEdit = useMutation<any, unknown, any>({
-    mutationFn: async () => {
+    mutationFn: async (id) => {
       return await Api.put(`/api/drivers/${id}`, user, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -100,7 +99,7 @@ export const DriverProvider = ({ children }: DriverProvider) => {
   });
 
   const deleteDriver = useMutation({
-    mutationFn: async () => {
+    mutationFn: async (id) => {
       return await Api.delete(`/api/drivers/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -180,7 +179,7 @@ const searchDriverByPlate = async (plate:string) => {
   }
 }
   return (
-    <DriverContext.Provider value={{isLoading, setLoading, searchDriverByNCpf,searchDriverByPlate ,searchDriverByName, DriversLit, driverCreate, driverEdit, setId, setUser, userFull, deleteDriver, GetInfoDriverAndTransport, userVisibleFull, setUserVisibleFull,setUserFull }}>
+    <DriverContext.Provider value={{isLoading, setLoading, searchDriverByNCpf,searchDriverByPlate ,searchDriverByName, DriversLit, driverCreate, driverEdit,setUser, userFull, deleteDriver, GetInfoDriverAndTransport, userVisibleFull, setUserVisibleFull,setUserFull }}>
       {children}
     </DriverContext.Provider>
   );

@@ -11,7 +11,7 @@ interface DriverCardProps {
 }
 
 export const DriverCard = ({ driver, setVisible, EditModaValue }: DriverCardProps) => {
-  const { deleteDriver, setId, GetInfoDriverAndTransport, setUserVisibleFull }: any = useDriverContext();
+  const { deleteDriver, GetInfoDriverAndTransport, setUserVisibleFull }: any = useDriverContext();
   return (
     <>
       <li className={style.li}>
@@ -34,8 +34,7 @@ export const DriverCard = ({ driver, setVisible, EditModaValue }: DriverCardProp
               src={icon_trash}
               alt="lixeira"
               onClick={() => {
-                setId(driver.id);
-                deleteDriver.mutate();
+                deleteDriver.mutate(driver.id);
               }}
             />
             <img
