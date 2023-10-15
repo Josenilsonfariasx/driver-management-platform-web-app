@@ -19,6 +19,7 @@ export interface DriverRequest {
 }
 export const DriverProvider = ({ children }: DriverProvider) => {
   const navi = useNavigate()
+  const [isLoading, setLoading] = useState(true)
   const { data: DriversLit } = useQuery<DriverRequest[]>({
     queryKey: ["driversList"],
     queryFn: async () => {
@@ -44,6 +45,8 @@ export const DriverProvider = ({ children }: DriverProvider) => {
     "The cpf field is required.": "O campo CPF é obrigatório.",
     "The telephone field is required.": "O campo telefone é obrigatório.",
     "The password field format is invalid.": "O campo senha esta com formato invalido",
+    "There is already a person with this CPF.": "Ja existe um usuario com este CPF",
+    "There is already a person with this telephone.": "Ja existe um usuario com este numero de celular"
   };
   
   const driverCreate = useMutation({
@@ -61,7 +64,9 @@ export const DriverProvider = ({ children }: DriverProvider) => {
     onError: (error: any) => {
       if (error.response && error.response.data && error.response.data.errors) {
         const errorMessages = error.response.data.errors;
-  
+      if(error.response.data.errors == "There is already a person with this telephone."){
+        toast.error("Ja existe um usuario com este CPF")
+      }
         for (const fieldName in errorMessages) {
           if (errorMessages.hasOwnProperty(fieldName)) {
             errorMessages[fieldName].forEach((errorMessage: string) => {
@@ -175,7 +180,7 @@ const searchDriverByPlate = async (plate:string) => {
   }
 }
   return (
-    <DriverContext.Provider value={{searchDriverByNCpf,searchDriverByPlate ,searchDriverByName, DriversLit, driverCreate, driverEdit, setId, setUser, userFull, deleteDriver, GetInfoDriverAndTransport, userVisibleFull, setUserVisibleFull,setUserFull }}>
+    <DriverContext.Provider value={{isLoading, setLoading, searchDriverByNCpf,searchDriverByPlate ,searchDriverByName, DriversLit, driverCreate, driverEdit, setId, setUser, userFull, deleteDriver, GetInfoDriverAndTransport, userVisibleFull, setUserVisibleFull,setUserFull }}>
       {children}
     </DriverContext.Provider>
   );
