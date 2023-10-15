@@ -26,8 +26,10 @@ export const Dashboard = () => {
             <h2 className="title white">{user?.name}</h2>
           </div>
         </div>
-        <div className={style.info}><TechList /></div>
-        <div className={style.info}><TransportList /></div>
+        <div className={style.list}>
+          <div className={style.info}><TechList /></div>
+          <div className={style.info}><TransportList /></div>
+        </div>
       </main>
     </div>
   );
