@@ -7,6 +7,7 @@ import { Input } from "../../components/Input/Input";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useDriverContext } from "../../Providers/DriverContext";
 import { useState } from "react";
+import { Loading } from "../../components/Loading/Loading";
 
 export interface user {
   id: string;
@@ -15,7 +16,7 @@ export interface user {
   updated_at?: string;
 }
 export const Dashboard = () => {
-  const { DriversLit, searchDriverByName, searchDriverByNCpf, searchDriverByPlate }: any = useDriverContext();
+  const { DriversLit, setLoading, isLoading, searchDriverByName, searchDriverByNCpf, searchDriverByPlate }: any = useDriverContext();
   const { register, handleSubmit } = useForm();
   const [dataSearch, setData] = useState([]);
   const storedUserString = localStorage.getItem("@me2-user");
@@ -46,7 +47,12 @@ export const Dashboard = () => {
       }
     }
   };
+  setTimeout(()=>{
+    setLoading(false)
+  },5000)
   return (
+    <>
+    {isLoading ? <Loading /> : false}
     <div className={style.div}>
       <Header visible={true} />
       <main className={style.main}>
@@ -91,10 +97,11 @@ export const Dashboard = () => {
         <div className={style.info}>
           {dataSearch.length > 0 ? <TechList value={dataSearch} /> : <TechList value={DriversLit} />}
         </div>
-        <div className={style.info}>
+        <div className={style.info_2}>
           <TransportList />
         </div>
       </main>
     </div>
+    </>
   );
 };
