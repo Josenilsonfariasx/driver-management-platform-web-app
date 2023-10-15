@@ -23,8 +23,9 @@ export const ModalEdit = ({ visible, EditModaValue }: ModalEditProps) => {
     };
 
     const filteredDriver = Object.fromEntries(
-      Object.entries(updatedDriver).filter(([ key, value]) => value !== undefined && !Number.isNaN(value) && value !== '')
+      Object.entries(updatedDriver).filter(([_key, value]) => value !== undefined && !Number.isNaN(value) && value !== '')
     );
+    
     setId(EditModaValue?.id)
     setUser(filteredDriver)
     driverEdit.mutate();
