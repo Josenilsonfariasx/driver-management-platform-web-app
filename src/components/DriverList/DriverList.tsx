@@ -7,11 +7,11 @@ import { ModalCreate } from "../ModalCreate/ModalCreate";
 import { ModalEdit } from "../ModalEdit/ModalEdit";
 import { DriverInfoModal } from "../DriverInforCard/DriverInforCard";
 
-export const TechList = () => {
+export const TechList = ({value}:any) => {
   const [visible, setVisible] = useState(false);
   const [editVisible, setEdit] = useState(false);
   const [EditModaValue, setValueModalEdit] = useState<any | undefined>(undefined);
-  const { DriversLit, userFull, userVisibleFull, setUserVisibleFull }: any = useDriverContext();
+  const { userFull, userVisibleFull, setUserVisibleFull }: any = useDriverContext();
   return (
     <>
       <section className={style.section}>
@@ -22,8 +22,8 @@ export const TechList = () => {
 
         <div className={style.list}>
           <ul>
-            {DriversLit
-              ? DriversLit.map((driver: any) => (
+            {value
+              ? value.map((driver: any) => (
                   <DriverCard
                     key={driver.id}
                     driver={driver}

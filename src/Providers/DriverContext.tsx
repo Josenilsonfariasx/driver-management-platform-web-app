@@ -2,8 +2,6 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ReactNode, createContext, useContext, useState } from "react";
 import { Api } from "../Services/Api";
 import { toast } from "react-toastify";
-// import { Api } from "../Services/Api";
-// import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 export const DriverContext = createContext({});
@@ -128,8 +126,56 @@ export const DriverProvider = ({ children }: DriverProvider) => {
       }
     }
 };
+
+const searchDriverByName = async (name:string) => {
+  try {
+    const response = await Api.get(`/api/drivers/search/${name}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(response.data)
+    return response.data
+  } catch (error:any) {
+    if(error.response.data.errors == 'Drivers not found'){
+      toast.error("motorista nao encontrado")
+    }
+  }
+}
+
+const searchDriverByNCpf = async (cpf:string) => {
+  try {
+    const response = await Api.get(`/api/drivers/search/cpf/${cpf}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(response.data)
+    return response.data
+  } catch (error:any) {
+    if(error.response.data.errors == 'Drivers not found'){
+      toast.error("motorista nao encontrado")
+    }
+  }
+}
+
+const searchDriverByPlate = async (plate:string) => {
+  try {
+    const response = await Api.get(`/api/drivers/search/plate/${plate}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(response.data)
+    return [response.data]
+  } catch (error:any) {
+    if(error.response.data.errors == 'Drivers not found'){
+      toast.error("motorista nao encontrado")
+    }
+  }
+}
   return (
-    <DriverContext.Provider value={{ DriversLit, driverCreate, driverEdit, setId, setUser, userFull, deleteDriver, GetInfoDriverAndTransport, userVisibleFull, setUserVisibleFull,setUserFull }}>
+    <DriverContext.Provider value={{searchDriverByNCpf,searchDriverByPlate ,searchDriverByName, DriversLit, driverCreate, driverEdit, setId, setUser, userFull, deleteDriver, GetInfoDriverAndTransport, userVisibleFull, setUserVisibleFull,setUserFull }}>
       {children}
     </DriverContext.Provider>
   );
