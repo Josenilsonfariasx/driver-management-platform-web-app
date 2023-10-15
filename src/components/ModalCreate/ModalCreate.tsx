@@ -28,6 +28,8 @@ export const ModalCreate = ({ visible }: any) => {
             <Input label="Cpf" type="text" placeholder="Digite o Cpf" {...register("cpf")} />
             <Input label="Telefone" type="text" placeholder="Digite o telefone" {...register("telephone")} />
             <Input label="Senha" type="password" placeholder="Digite a senha" {...register("password")} />
+            <span className="title headline white">Senha deve conter letras minusculas e maiusculas</span>
+            <span className="title headline white">Senha deve conter pelo menos um caracter especial e um numero</span>
             <button className="button">Cadastrar Motorista</button>
           </form>
         </div>
