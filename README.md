@@ -64,10 +64,12 @@ Em um mundo onde a mobilidade é fundamental, a gestão de motoristas desempenha
 - **Autenticação de Administração**: A autenticação de administradores garante que apenas pessoal autorizado possa acessar e gerenciar os dados dos motoristas.
 
 - **Exclusão Segura**: A opção de exclusão segura garante que os registros de motoristas sejam gerenciados com segurança, evitando a perda acidental de informações.
+  
+- **Integração com Slack para Leitura de Logs**: O projeto oferece a capacidade de integração com o Slack para a leitura de logs do lado do servidor. Isso permite que administradores monitorem o sistema em tempo real, recebendo notificações e registros de atividades diretamente no Slack.
 
 - **Documentação Completa**: O projeto inclui documentação detalhada das rotas e serviços disponíveis, facilitando a integração com outras aplicações.
 
-Este projeto é uma solução valiosa para empresas que precisam gerenciar uma força de trabalho de motoristas eficiente e segura. Com uma interface intuitiva e funcionalidades abrangentes, o Driver Management Drivers simplifica o processo de registro, pesquisa e atualização de informações de motoristas, contribuindo para um gerenciamento mais eficaz e um melhor controle sobre as operações.
+  ---------------------------------------------------------------------------------------------------------------------------
 
 ## Tecnologias Utilizadas
 
